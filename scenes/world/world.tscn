@@ -40,6 +40,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 bbcode_enabled = true
 
+[node name="Timer" type="Timer" parent="UI/Dialogue"]
+wait_time = 0.1
+one_shot = true
+
 [node name="PausePop" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
@@ -53,3 +57,4 @@ position = Vector2( 288, 109 )
 dialogue = "More test dialogue."
 
 [connection signal="pressed" from="UI/Pause" to="." method="_on_pause_pressed"]
+[connection signal="timeout" from="UI/Dialogue/Timer" to="." method="_on_text_timer_timeout"]
