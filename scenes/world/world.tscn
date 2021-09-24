@@ -51,10 +51,11 @@ position = Vector2( 138, 94 )
 
 [node name="Interactable" parent="." instance=ExtResource( 4 )]
 position = Vector2( -3, 32 )
+dialogue = PoolStringArray( "Line 1", "Line 2" )
 
 [node name="Interactable2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 288, 109 )
-dialogue = "More test dialogue."
+dialogue = PoolStringArray( "This is a test dialogue.", "This is the second line." )
 
 [connection signal="pressed" from="UI/Pause" to="." method="_on_pause_pressed"]
 [connection signal="timeout" from="UI/Dialogue/Timer" to="." method="_on_text_timer_timeout"]

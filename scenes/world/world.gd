@@ -1,6 +1,9 @@
 extends Node
 
 
+var _cur_line := -1
+var _cur_dialogue: PoolStringArray
+
 onready var _dialogue := $UI/Dialogue
 onready var _text := $UI/Dialogue/Text
 onready var _text_timer := $UI/Dialogue/Timer
@@ -14,8 +17,11 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and $UI/Dialogue.visible:
 		if _text.percent_visible == 1.0:
-			_dialogue.hide()
-			$Player.can_move = true
+			if _cur_line == _cur_dialogue.size() - 1:
+				_dialogue.hide()
+				$Player.can_move = true
+			else:
+				_advance_line()
 		else:
 			_text_timer.stop()
 			_text.percent_visible = 1.0
@@ -25,9 +31,15 @@ func _on_pause_pressed() -> void:
 	Pause.show_pause()
 
 
-func _on_dialogue_triggered(dialogue: String) -> void:
+func _on_dialogue_triggered(dialogue: PoolStringArray) -> void:
 	_dialogue.show()
-	_text.bbcode_text = dialogue
+	_cur_dialogue = dialogue
+	_cur_line = -1
+	_advance_line()
+	
+func _advance_line() -> void:
+	_cur_line += 1
+	_text.bbcode_text = _cur_dialogue[_cur_line]
 	_text.visible_characters = 0
 	_text_timer.start()
 

@@ -13,7 +13,6 @@ radius = 50.0
 "interactable",
 ]]
 script = ExtResource( 2 )
-dialogue = "This is a test dialogue."
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

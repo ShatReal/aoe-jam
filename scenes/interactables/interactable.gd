@@ -3,7 +3,7 @@ extends StaticBody2D
 
 signal show_dialogue(dialogue)
 
-export(String, MULTILINE) var dialogue: String
+export(PoolStringArray) var dialogue: PoolStringArray
 
 
 func interact() -> void:
