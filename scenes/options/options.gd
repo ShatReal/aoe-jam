@@ -10,6 +10,7 @@ func _ready() -> void:
 	
 	if OS.get_name() == "HTMl5":
 		$OptionsPop/Options/Vsync.hide()
+		$OptionsPop/Options/Borderless.hide()
 	
 	var dir := Directory.new()
 	if not dir.dir_exists(_OPTIONS_DIR):
