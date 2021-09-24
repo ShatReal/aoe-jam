@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/main/main.gd" type="Script" id=1]
+
+[node name="Main" type="Node"]
+script = ExtResource( 1 )
+start = "res://scenes/main_menu/main_menu.tscn"
+
+[node name="CurrentScene" type="Node" parent="."]
+pause_mode = 1

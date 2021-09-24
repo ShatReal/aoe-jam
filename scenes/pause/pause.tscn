@@ -1,0 +1,72 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/pause/pause.gd" type="Script" id=1]
+
+[node name="Pause" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 1 )
+_title_screen = "res://scenes/main_menu/main_menu.tscn"
+
+[node name="PausePop" type="PopupPanel" parent="."]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -120.0
+margin_top = -67.5
+margin_right = 120.0
+margin_bottom = 67.5
+rect_min_size = Vector2( 240, 135 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PausePop"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+alignment = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Resume" type="Button" parent="PausePop/VBoxContainer"]
+margin_top = 5.0
+margin_right = 232.0
+margin_bottom = 25.0
+text = "Resume"
+
+[node name="SaveLoad" type="Button" parent="PausePop/VBoxContainer"]
+margin_top = 29.0
+margin_right = 232.0
+margin_bottom = 49.0
+text = "Save / Load"
+
+[node name="Options" type="Button" parent="PausePop/VBoxContainer"]
+margin_top = 53.0
+margin_right = 232.0
+margin_bottom = 73.0
+text = "Options"
+
+[node name="Title" type="Button" parent="PausePop/VBoxContainer"]
+margin_top = 77.0
+margin_right = 232.0
+margin_bottom = 97.0
+text = "Title Screen"
+
+[node name="Quit" type="Button" parent="PausePop/VBoxContainer"]
+margin_top = 101.0
+margin_right = 232.0
+margin_bottom = 121.0
+text = "Quit"
+
+[connection signal="popup_hide" from="PausePop" to="." method="_on_pause_pop_popup_hide"]
+[connection signal="pressed" from="PausePop/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PausePop/VBoxContainer/SaveLoad" to="." method="_on_save_load_pressed"]
+[connection signal="pressed" from="PausePop/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="PausePop/VBoxContainer/Title" to="." method="_on_title_pressed"]
+[connection signal="pressed" from="PausePop/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
