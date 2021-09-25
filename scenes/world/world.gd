@@ -1,8 +1,11 @@
 extends Node
 
 
+signal scene_changed(to)
+
 var _cur_line := -1
 var _cur_dialogue: PoolStringArray
+var _cur_minigame: String
 
 onready var _dialogue := $UI/Dialogue
 onready var _text := $UI/Dialogue/Text
@@ -18,8 +21,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and $UI/Dialogue.visible:
 		if _text.percent_visible == 1.0:
 			if _cur_line == _cur_dialogue.size() - 1:
-				_dialogue.hide()
-				$Player.can_move = true
+				if _cur_minigame:
+					emit_signal("scene_changed", _cur_minigame)
+				else:
+					_dialogue.hide()
+					$Player.can_move = true
 			else:
 				_advance_line()
 		else:
@@ -31,9 +37,10 @@ func _on_pause_pressed() -> void:
 	Pause.show_pause()
 
 
-func _on_dialogue_triggered(dialogue: PoolStringArray) -> void:
+func _on_dialogue_triggered(dialogue: PoolStringArray, minigame: String) -> void:
 	_dialogue.show()
 	_cur_dialogue = dialogue
+	_cur_minigame = minigame
 	_cur_line = -1
 	_advance_line()
 	

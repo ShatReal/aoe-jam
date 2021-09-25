@@ -52,6 +52,7 @@ position = Vector2( 138, 94 )
 [node name="Interactable" parent="." instance=ExtResource( 4 )]
 position = Vector2( -3, 32 )
 dialogue = PoolStringArray( "Line 1", "Line 2" )
+minigame = "res://scenes/minigames/ecg.tscn"
 
 [node name="Interactable2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 288, 109 )
