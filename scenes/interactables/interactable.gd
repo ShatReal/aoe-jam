@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Node2D
 
 
 signal show_dialogue(dialogue)
