@@ -42,7 +42,8 @@ func _ready():
 	for point in ecg_data:
 		normalized_ecg_data.append((float(point)-min_val)/(max_val-min_val))
 
-	var size = get_viewport().size
+	var size = get_viewport().get_visible_rect().size
+	print(size)
 
 	var x = 0
 	for point in len(normalized_ecg_data)+1:
@@ -64,7 +65,7 @@ func rescale_ecg_data():
 func _process(delta):		
 	rescale_ecg_data()
 	curve.clear_points()
-	var size = get_viewport().size
+	var size = get_viewport().get_visible_rect().size
 	var x = 0
 	for point in len(rescaled_ecg_data)+1:
 		curve.add_point(Vector2(size.x/len(rescaled_ecg_data)*x, size.y/3+(rescaled_ecg_data[point%len(rescaled_ecg_data)]*-scaling)))
@@ -88,23 +89,29 @@ func _input(event):
 		pressed = true
 
 func _physics_process(delta):
+	var old_offset = unit_offset
+	
 	unit_offset += bpm/60.0 * delta #1.0 * delta
 	
-	if unit_offset <= 0.10:
-		beat1played = false
-		beat2played = false
-		pressed = false
+	if unit_offset < old_offset:
+		$"Player"._on_Timer_timeout()
 	
-	if unit_offset >= 0.25 and unit_offset <= 0.31:
-		if not beat1played and play:
-			beat1.play()
-			beat1played = true
+	#if unit_offset <= 0.10:
+	#	beat1played = false
+	#	beat2played = false
+	#	pressed = false
+	
+	#if unit_offset >= 0.25 and unit_offset <= 0.31:
+	#	if not beat1played and play:
+	#		#beat1.play()
+	#		beat1played = true
 		
-	if unit_offset >= 0.57 and unit_offset <= 0.63:
-		if not beat2played and play:
-			beat2.play()
-			beat2played = true
+	#if unit_offset >= 0.57 and unit_offset <= 0.63:
+	#	if not beat2played and play:
+	#		#beat2.play()
+	#		beat2played = true
 			
-	if unit_offset >= 0.90 and not pressed:
-		progress = progress - 0.1
+	#if unit_offset >= 0.90 and not pressed:
+		#progress = progress - 0.1
+	#	pass
 	pass
