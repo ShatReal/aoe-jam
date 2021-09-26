@@ -123,5 +123,10 @@ stream = ExtResource( 2 )
 position = Vector2( 817.905, 277.579 )
 shape = SubResource( 8 )
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 960, 540 )
+current = true
+zoom = Vector2( 1.846, 1.837 )
+
 [connection signal="timeout" from="Path2D/PathFollow2D/Player/Timer" to="Path2D/PathFollow2D/Player" method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="Path2D/PathFollow2D/Player" method="_on_Area2D_body_entered"]

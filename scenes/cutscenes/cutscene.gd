@@ -98,4 +98,4 @@ func _on_text_timer_timeout() -> void:
 
 
 func _on_replay_pressed() -> void:
-	emit_signal("scene_changed", "res://scenes/minigames/ec2g.tscn")
+	emit_signal("scene_changed", "res://scenes/minigames/viewport.tscn")
