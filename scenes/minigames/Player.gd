@@ -17,7 +17,7 @@ onready var bgm = get_node("../../../BGM")
 
 var current = 0
 var current_gradient = 0
-var tolerance = 0.1
+var tolerance = 0.25
 
 var hit_counter = 0
 var miss_counter = 0

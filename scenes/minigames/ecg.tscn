@@ -55,6 +55,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 480, 270 )
 
 [node name="BackgroundLine" type="Line2D" parent="."]
+visible = false
 position = Vector2( 0, 540 )
 width = 5.0
 default_color = Color( 0.709804, 0.929412, 0.529412, 0.0745098 )
@@ -74,6 +75,7 @@ script = ExtResource( 3 )
 bgline_path = NodePath("../../BackgroundLine")
 scaling = 350
 play = true
+bpm = 128
 progress = 1.0
 
 [node name="Player" type="KinematicBody2D" parent="Path2D/PathFollow2D"]
