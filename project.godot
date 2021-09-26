@@ -24,12 +24,6 @@ config/name="AoE Jam"
 run/main_scene="res://scenes/main/main.tscn"
 config/icon="res://icon.png"
 
-[autoload]
-
-SaveLoad="*res://scenes/save_load/save_load.tscn"
-Options="*res://scenes/options/options.tscn"
-Pause="*res://scenes/pause/pause.tscn"
-
 [debug]
 
 gdscript/warnings/narrowing_conversion=false
