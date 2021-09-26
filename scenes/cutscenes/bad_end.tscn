@@ -3,4 +3,7 @@
 [ext_resource path="res://scenes/cutscenes/cutscene.tscn" type="PackedScene" id=1]
 
 [node name="BadEnd" instance=ExtResource( 1 )]
-_dialogue = PoolStringArray( "SET|clear", "Dr T|Oh no! Her pulse is dying out! Let me call 999.", "999|Emergency, which service\?", "ANIM|fade_in", "SHOW|Replay" )
+_dialogue = PoolStringArray( "SET|clear", "SET|doctor", "MUSIC|inside_the_house.ogg", "Dr T|Oh no! Her pulse is dying out! Let me call 999.", "999|Emergency, which service\?", "ANIM|fade_in", "SHOW|Replay" )
+
+[node name="AnimatedSprite" parent="." index="3"]
+frame = 0

@@ -47,6 +47,9 @@ func _advance_dialogue() -> void:
 				"clear":
 					_ap.play("fade_out")
 					_ap.seek(1.0, true)
+				"doctor":
+					_ap.play("doctor_walk")
+					_ap.seek(1.0, true)
 			_advance_dialogue()
 		"SOUND":
 			_waiting = true
@@ -95,4 +98,4 @@ func _on_text_timer_timeout() -> void:
 
 
 func _on_replay_pressed() -> void:
-	emit_signal("scene_changed", "res://scenes/cutscenes/opening.tscn")
+	emit_signal("scene_changed", "res://scenes/minigames/viewport.tscn")
