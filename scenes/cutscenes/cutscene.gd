@@ -6,7 +6,7 @@ signal scene_changed(to)
 const _SOUNDS_PATH := "res://sounds/%s"
 const _MUSIC_PATH := "res://music/%s"
 
-export(String, FILE, "*.tscn") var _next_scene: String
+export(PoolStringArray) var _dialogue: PoolStringArray
 
 var _index := -1
 var _waiting := false
@@ -18,22 +18,6 @@ onready var _title := $VBoxContainer/Title/Label
 onready var _text := $VBoxContainer/Dialogue/Text
 onready var _text_timer := $VBoxContainer/Dialogue/Text/TextTimer
 onready var _ap := $AnimationPlayer
-
-
-var _dialogue := PoolStringArray([
-	"SOUND|doorbell.mp3",
-	"Dr T|Hello Mrs. Moores, I'm Doctor Tania from your GP surgery. I'm here for your scheduled home visit?",
-	"WAIT|3.0",
-	"Dr T|That's strange. Jessica confirmed that she informed her that I'm coming. Let me try knocking.",
-	"SOUND|door_knock.ogg",
-	"SOUND|door_creak.ogg",
-	"Dr T|Oh! The door is...open?",
-	"ANIM|fade",
-	"MUSIC|inside_the_house.ogg",
-	"Dr T|Oh my god, Mrs Moores! It seems she tried to open the door to call for help, but fainted! Her pulse is fading, but she's still showing some signs of life.",
-	"Dr T|It's a long shot, but let me try using the pulse reviver app on my phone. It's helped patients like this before, and I am running out of time!",
-#	"ANIM phone",
-])
 
 
 func _ready() -> void:
@@ -52,10 +36,18 @@ func _unhandled_input(event: InputEvent) -> void:
 func _advance_dialogue() -> void:
 	_index += 1
 	if _index >= _dialogue.size():
-		emit_signal("scene_changed", _next_scene)
 		return
 	var line = _dialogue[_index].split("|")
 	match line[0]:
+		"SET":
+			match line[1]:
+				"black":
+					_ap.play("fade_in")
+					_ap.seek(1.0, true)
+				"clear":
+					_ap.play("fade_out")
+					_ap.seek(1.0, true)
+			_advance_dialogue()
 		"SOUND":
 			_waiting = true
 			_sound.stream = load(_SOUNDS_PATH % line[1])
@@ -72,6 +64,10 @@ func _advance_dialogue() -> void:
 			_music.stream = load(_MUSIC_PATH % line[1])
 			_music.play()
 			_advance_dialogue()
+		"CHANGE":
+			emit_signal("scene_changed", line[1])
+		"SHOW":
+			get_node(line[1]).show()
 		_:
 			_waiting = false
 			_title.text = line[0]
@@ -96,3 +92,7 @@ func _on_text_timer_timeout() -> void:
 	_text.visible_characters += 1
 	if not _text.percent_visible == 1.0:
 		_text_timer.start()
+
+
+func _on_replay_pressed() -> void:
+	emit_signal("scene_changed", "res://scenes/cutscenes/opening.tscn")
