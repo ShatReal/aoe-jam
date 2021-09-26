@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/world/world.gd" type="Script" id=1]
-[ext_resource path="res://sounds/yfs_la_paz_doorbell1_078.mp3" type="AudioStream" id=2]
+[ext_resource path="res://sounds/doorbell.mp3" type="AudioStream" id=2]
 [ext_resource path="res://Dialogue.tscn" type="PackedScene" id=3]
+
 
 [node name="World" type="Node"]
 script = ExtResource( 1 )
