@@ -3,4 +3,9 @@
 [ext_resource path="res://scenes/cutscenes/cutscene.tscn" type="PackedScene" id=1]
 
 [node name="Opening" instance=ExtResource( 1 )]
-_dialogue = PoolStringArray( "SET|black", "SOUND|doorbell.ogg", "Dr T|Hello Mrs. Moores, I\'m Doctor Tania from your GP surgery. I\'m here for your scheduled home visit\?", "WAIT|3.0", "Dr T|That\'s strange. Jessica confirmed that she informed her that I\'m coming. Let me try knocking.", "SOUND|door_knock.ogg", "SOUND|door_creak.ogg", "Dr T|Oh! The door is...open\?", "ANIM|fade_out", "MUSIC|inside_the_house.ogg", "Dr T|Oh my god, Mrs Moores! It seems she tried to open the door to call for help, but fainted! Her pulse is fading, but she\'s still showing some signs of life.", "Dr T|It\'s a long shot, but let me try using the pulse reviver app on my phone. It\'s helped patients like this before, and I am running out of time!", "ANIM|phone", "WAIT|1.0", "CHANGE|res://scenes/minigames/ec2g.tscn" )
+_dialogue = PoolStringArray( "SET|black", "SOUND|doorbell.ogg", "Dr T|Hello Mrs. Moores, I\'m Doctor Tania from your GP surgery. I\'m here for your scheduled home visit\?", "WAIT|3.0", "Dr T|That\'s strange. Jessica confirmed that she informed her that I\'m coming. Let me try knocking.", "SOUND|door_knock.ogg", "SOUND|door_creak.ogg", "Dr T|Oh! The door is...open\?", "ANIM|fade_out", "MUSIC|inside_the_house.ogg", "Dr T|Oh my god, Mrs Moores! It seems she tried to open the door to call for help, but fainted! Her pulse is fading, but she\'s still showing some signs of life.", "ANIM|doctor_walk", "Dr T|It\'s a long shot, but let me try using the pulse reviver app on my phone. It\'s helped patients like this before, and I am running out of time!", "ANIM|phone", "WAIT|1.0", "CHANGE|res://scenes/minigames/ec2g.tscn" )
+
+[node name="AnimatedSprite" parent="." index="3"]
+position = Vector2( 235, 1165 )
+animation = "walk_right"
+frame = 0

@@ -3,4 +3,7 @@
 [ext_resource path="res://scenes/cutscenes/cutscene.tscn" type="PackedScene" id=1]
 
 [node name="GoodEnd" instance=ExtResource( 1 )]
-_dialogue = PoolStringArray( "SET|clear", "SOUND|cough.wav", "Dr T|Mrs Moores! Don\'t worry, I am Dr Tania from your GP surgery. Take a deep breath in...aaand out. Relax. It\'s all going to be fine.", "ANIM|fade_in", "SHOW|Replay" )
+_dialogue = PoolStringArray( "SET|clear", "SET|doctor", "MUSIC|inside_the_house.ogg", "SOUND|coughs.mp3", "Dr T|Mrs Moores! Don\'t worry, I am Dr Tania from your GP surgery. Take a deep breath in...aaand out. Relax. It\'s all going to be fine.", "ANIM|fade_in", "SHOW|Replay" )
+
+[node name="AnimatedSprite" parent="." index="3"]
+frame = 0

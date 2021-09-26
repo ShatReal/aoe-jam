@@ -47,6 +47,9 @@ func _advance_dialogue() -> void:
 				"clear":
 					_ap.play("fade_out")
 					_ap.seek(1.0, true)
+				"doctor":
+					_ap.play("doctor_walk")
+					_ap.seek(1.0, true)
 			_advance_dialogue()
 		"SOUND":
 			_waiting = true
