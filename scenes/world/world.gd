@@ -8,23 +8,19 @@ onready var _dialogue := $UI/Dialogue
 onready var _text := $UI/Dialogue/Text
 onready var _text_timer := $UI/Dialogue/Timer
 
+
 func _ready() -> void:
+	$Player.can_move = false
 	for i in get_tree().get_nodes_in_group("interactable"):
-		i.connect("object_clicked", self, "_on_object_clicked")
+		i.connect("show_dialogue", self, "_on_dialogue_triggered")
 		
-func _on_object_clicked(object: Node2D) -> void:
-	if "dialogue" in object and not object.dialogue.empty():
-		_dialogue.show()
-		_cur_dialogue = object.dialogue
-		_cur_line = -1
-		_advance_line()
-		
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and $UI/Dialogue.visible:
 		if _text.percent_visible == 1.0:
 			if _cur_line == _cur_dialogue.size() - 1:
 				_dialogue.hide()
-				#$Player.can_move = true
+				$Player.can_move = true
 			else:
 				_advance_line()
 		else:
