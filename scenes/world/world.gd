@@ -13,6 +13,7 @@ onready var _text_timer := $UI/Dialogue/Timer
 
 
 func _ready() -> void:
+	$Player.can_move = false
 	for i in get_tree().get_nodes_in_group("interactable"):
 		i.connect("show_dialogue", self, "_on_dialogue_triggered")
 		
