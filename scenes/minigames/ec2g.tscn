@@ -25,15 +25,15 @@ colors = PoolColorArray( 0.505882, 0.815686, 0.34902, 0, 0.505882, 0.815686, 0.3
 [sub_resource type="CircleShape2D" id=4]
 radius = 5.0
 
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="CircleShape2D" id=5]
 radius = 2.0
 
-[sub_resource type="Gradient" id=7]
-
 [sub_resource type="Gradient" id=6]
+
+[sub_resource type="Gradient" id=7]
 colors = PoolColorArray( 0.45098, 0.756863, 0.337255, 0, 0.45098, 0.756863, 0.337255, 1 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 12000, 1000 )
 
 [node name="Node2D" type="Node2D"]
@@ -152,7 +152,7 @@ scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D2"]
-shape = SubResource( 8 )
+shape = SubResource( 5 )
 
 [node name="Timer" type="Timer" parent="KinematicBody2D2"]
 process_mode = 0
@@ -161,25 +161,25 @@ autostart = true
 
 [node name="LineA" type="Line2D" parent="."]
 width = 4.0
-gradient = SubResource( 7 )
+gradient = SubResource( 6 )
 joint_mode = 2
 begin_cap_mode = 2
 script = ExtResource( 11 )
-grad = SubResource( 6 )
+grad = SubResource( 7 )
 
 [node name="LineB" type="Line2D" parent="."]
 width = 4.0
-gradient = SubResource( 7 )
+gradient = SubResource( 6 )
 joint_mode = 2
 begin_cap_mode = 2
 script = ExtResource( 11 )
-grad = SubResource( 6 )
+grad = SubResource( 7 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 268.884, 1150.75 )
-shape = SubResource( 5 )
+shape = SubResource( 8 )
 
 [connection signal="area_entered" from="KinematicBody2D/Area2D" to="KinematicBody2D" method="_on_Area2D_area_entered"]
 [connection signal="timeout" from="KinematicBody2D2/Timer" to="KinematicBody2D2" method="_on_Timer_timeout"]
