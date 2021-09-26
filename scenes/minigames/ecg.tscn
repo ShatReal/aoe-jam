@@ -175,7 +175,7 @@ margin_bottom = 101.0
 rect_min_size = Vector2( 400, 40 )
 custom_styles/fg = SubResource( 9 )
 custom_styles/bg = SubResource( 10 )
-value = 100.0
+value = 50.0
 percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -187,4 +187,5 @@ autostart = true
 [connection signal="timeout" from="Path2D/PathFollow2D/Player/Timer" to="Path2D/PathFollow2D/Player" method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="Path2D/PathFollow2D/Player" method="_on_Area2D_body_entered"]
 [connection signal="lose" from="Life" to="." method="_on_lose"]
+[connection signal="win" from="Life" to="." method="_on_win"]
 [connection signal="timeout" from="Life/Timer" to="Life" method="_on_Timer_timeout"]

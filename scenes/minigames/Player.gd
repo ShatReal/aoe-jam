@@ -34,6 +34,8 @@ func _ready():
 	bgm.play()
 	
 func trigger_hit():
+	var pbar = get_node("../../../Life/ProgressBar")
+	pbar.value = pbar.value + 3
 	print("Okay")
 	current_gradient = 1 - current_gradient
 	lines[0].grad = gradients[current_gradient]
