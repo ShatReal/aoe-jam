@@ -11,7 +11,6 @@ onready var _current_scene := $CurrentScene
 func _ready() -> void:
 	if start:
 		call_deferred("_change_scene", start)
-	Pause.connect("scene_changed", self, "_change_scene", [], CONNECT_DEFERRED)
 
 
 func _change_scene(to: String) -> void:
