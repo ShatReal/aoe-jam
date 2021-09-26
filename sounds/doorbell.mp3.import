@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/doorbell.mp3-96c41656d1db68384f42bff420a008eb.mp3str"
+
+[deps]
+
+source_file="res://sounds/doorbell.mp3"
+dest_files=[ "res://.import/doorbell.mp3-96c41656d1db68384f42bff420a008eb.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
