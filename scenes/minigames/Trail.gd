@@ -2,7 +2,7 @@ extends Line2D
 
 export (Gradient) var grad
 var last_points := []
-onready var player := get_node("../KinematicBody2D2")
+onready var player := get_node("../Path2D/PathFollow2D/Player")
 var running = false
 var last_pos = Vector2.ZERO
 var count = 1
@@ -21,7 +21,7 @@ func _physics_process(delta):
 			last_points.append(last_pos + Vector2(player.speed * delta, 0.0) * count)
 			count = count + 1
 	
-	while len(last_points) > 35:
+	while len(last_points) > 15:
 		last_points.pop_front()
 	
 	pass

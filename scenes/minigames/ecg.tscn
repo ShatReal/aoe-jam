@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/minigames/background.png" type="Texture" id=1]
+[ext_resource path="res://sounds/Signs_Of_Life_in_House_3_Kicks__Chords_loop.ogg" type="AudioStream" id=2]
 [ext_resource path="res://scripts/minigames/ecg/ecgcurve.gd" type="Script" id=3]
 [ext_resource path="res://icon.png" type="Texture" id=4]
 [ext_resource path="res://sounds/heart1.ogg" type="AudioStream" id=6]
@@ -14,16 +15,25 @@ _data = {
 "points": PoolVector2Array(  )
 }
 
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="Gradient" id=2]
+colors = PoolColorArray( 0.470588, 0.827451, 0.32549, 0, 0.470588, 0.827451, 0.32549, 1 )
+
+[sub_resource type="Gradient" id=3]
+colors = PoolColorArray( 0.827451, 0.32549, 0.32549, 0, 0.827451, 0.32549, 0.32549, 1 )
+
+[sub_resource type="CircleShape2D" id=4]
 radius = 2.0
 
-[sub_resource type="Gradient" id=7]
+[sub_resource type="Gradient" id=5]
 
 [sub_resource type="Gradient" id=6]
 colors = PoolColorArray( 0.45098, 0.756863, 0.337255, 0, 0.45098, 0.756863, 0.337255, 1 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 12000, 1000 )
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 100.0
 
 [node name="Node2D" type="Node2D"]
 
@@ -38,15 +48,15 @@ stream = ExtResource( 7 )
 script = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 4, 4 )
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 480, 270 )
 
 [node name="BackgroundLine" type="Line2D" parent="."]
-visible = false
-position = Vector2( 0, 140 )
-width = 2.0
+position = Vector2( 0, 540 )
+width = 5.0
 default_color = Color( 0.709804, 0.929412, 0.529412, 0.0745098 )
 
 [node name="BackgroundLine2" type="Line2D" parent="."]
@@ -56,59 +66,43 @@ width = 2.0
 default_color = Color( 1, 1, 1, 0.321569 )
 
 [node name="Path2D" type="Path2D" parent="."]
-visible = false
-position = Vector2( 0, 140 )
 curve = SubResource( 1 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-visible = false
 rotate = false
 script = ExtResource( 3 )
 bgline_path = NodePath("../../BackgroundLine")
+scaling = 350
 play = true
-bpm = 60
-
-[node name="Path2D2" type="Path2D" parent="."]
-visible = false
-position = Vector2( 0, 140 )
-curve = SubResource( 1 )
-
-[node name="PathFollow2D2" type="PathFollow2D" parent="Path2D2"]
-visible = false
-rotate = false
-script = ExtResource( 3 )
-bgline_path = NodePath("../../BackgroundLine2")
-scaling = 180
-bpm = 60
 progress = 1.0
 
-[node name="KinematicBody2D2" type="KinematicBody2D" parent="."]
+[node name="Player" type="KinematicBody2D" parent="Path2D/PathFollow2D"]
 script = ExtResource( 9 )
+gradient1 = SubResource( 2 )
+gradient2 = SubResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="KinematicBody2D2"]
+[node name="Sprite" type="Sprite" parent="Path2D/PathFollow2D/Player"]
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D2"]
-shape = SubResource( 8 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Player"]
+shape = SubResource( 4 )
 
-[node name="Timer" type="Timer" parent="KinematicBody2D2"]
+[node name="Timer" type="Timer" parent="Path2D/PathFollow2D/Player"]
 process_mode = 0
 wait_time = 0.938
-autostart = true
 
 [node name="LineA" type="Line2D" parent="."]
-width = 4.0
-gradient = SubResource( 7 )
-joint_mode = 2
+width = 14.0
+gradient = SubResource( 5 )
 begin_cap_mode = 2
 script = ExtResource( 11 )
 grad = SubResource( 6 )
 
 [node name="LineB" type="Line2D" parent="."]
-width = 4.0
-gradient = SubResource( 7 )
-joint_mode = 2
+points = PoolVector2Array( 1597.6, 1727.45 )
+width = 14.0
+gradient = SubResource( 5 )
 begin_cap_mode = 2
 script = ExtResource( 11 )
 grad = SubResource( 6 )
@@ -116,7 +110,18 @@ grad = SubResource( 6 )
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 268.884, 1150.75 )
-shape = SubResource( 5 )
+position = Vector2( 284.884, 1602.75 )
+shape = SubResource( 7 )
 
-[connection signal="timeout" from="KinematicBody2D2/Timer" to="KinematicBody2D2" method="_on_Timer_timeout"]
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 960, 540 )
+stream = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 817.905, 277.579 )
+shape = SubResource( 8 )
+
+[connection signal="timeout" from="Path2D/PathFollow2D/Player/Timer" to="Path2D/PathFollow2D/Player" method="_on_Timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="Path2D/PathFollow2D/Player" method="_on_Area2D_body_entered"]
