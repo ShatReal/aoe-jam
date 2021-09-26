@@ -19,6 +19,9 @@ var current = 0
 var current_gradient = 0
 var tolerance = 0.1
 
+var hit_counter = 0
+var miss_counter = 0
+
 onready var lines = [get_node("../../../LineA"), get_node("../../../LineB")]
 
 func _ready():
@@ -27,7 +30,7 @@ func _ready():
 	lines[0].grad = gradient1
 	lines[1].grad = gradient1
 	gradients = [gradient1, gradient2]
-	yield(get_tree().create_timer(0.08), "timeout")
+	yield(get_tree().create_timer(0.2), "timeout")
 	bgm.play()
 	
 func trigger_hit():
